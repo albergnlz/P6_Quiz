@@ -11,7 +11,9 @@
 
             <li>
                 <%= tip.text %>
-
+                <td colspan="2">
+                    <small> (by<span class="author"><%= tip.author ? tip.author.username: "Anonymous"%></span> )</small>
+                </td>
                 <% if (!accepted && (isAdmin || isQuizAuthor)) { %>
 
                     <a href="/quizzes/<%= quizId %>/tips/<%= tip.id %>/accept?_method=PUT">

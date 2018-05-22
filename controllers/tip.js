@@ -4,6 +4,7 @@ const {models} = require("../models");
 
 // Autoload the tip with id equals to :tipId
 exports.load = (req, res, next, tipId) => {
+    const authorId = req.session.user && req.session.user.id || 0;
 
     models.tip.findById(tipId)
     .then(tip => {
@@ -24,10 +25,11 @@ exports.create = (req, res, next) => {
     const tip = models.tip.build(
         {
             text: req.body.text,
-            quizId: req.quiz.id
+            quizId: req.quiz.id,
+            authorId
         });
 
-    tip.save()
+    tip.save({fields:["text","quizId","authorId"]})
     .then(tip => {
         req.flash('success', 'Tip created successfully.');
         res.redirect("back");
@@ -72,5 +74,11 @@ exports.destroy = (req, res, next) => {
         res.redirect('/quizzes/' + req.params.quizId);
     })
     .catch(error => next(error));
+};
+
+exports.new= (req,res,next)=>{
+    const tip = { text:"" };
+    const{quiz}=req;
+    res.render('tips/new', {tip,quiz});
 };
 

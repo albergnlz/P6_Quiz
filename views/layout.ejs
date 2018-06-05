@@ -20,11 +20,11 @@
 
         <div class="right">
             <% if (!session.user) { %>
-                <a href="/users/new">Register</a>
-                <a href="/session">Login</a>
+            <a href="/users/new">Register</a>
+            <a href="/session">Login</a>
             <% } else { %>
-                <a href="/users/<%= session.user.id %>"><%= session.user.username %></a>
-                <a href="/session?_method=DELETE">Logout</a>
+            <a href="/users/<%= session.user.id %>"><%= session.user.username %></a>
+            <a href="/session?_method=DELETE">Logout</a>
             <% } %>
         </div>
 
@@ -35,12 +35,14 @@
         <a href="/">Home</a>
         <a href="/quizzes">Quizzes</a>
         <% if (session.user) { %>
-            <a href="/users/<%= session.user.id %>/quizzes">My Quizzes</a>
+        <a href="/users/<%= session.user.id %>/quizzes">My Quizzes</a>
         <% } %>
-        <a href="/author">Author</a>
         <% if (session.user) { %>
-            <a href="/users">Users</a>
+        <a href="/users">Users</a>
         <% } %>
+
+        <a href="/quizzes/randomplay">play</a>
+
     </nav>
 
     <section class="main" id="mainSection">

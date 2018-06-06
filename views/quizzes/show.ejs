@@ -1,4 +1,9 @@
 
+<% var tips = quiz.tips; %>
+<% var quizId = quiz.id; %>
+<% var quizAuthorId = quiz.authorId; %>
+
+
 <div class="right">
     <small> (by <%= quiz.author ? quiz.author.username : "Anonymous" %>) </small>
 </div>
@@ -9,7 +14,11 @@
 
 <ul>
     <li>Question: <b><%= quiz.question %></b></li>
-    <li>Answer: <b><%= quiz.answer %></b></li>
+    <% if (session.user) { %>
+        <% if (session.user.isAdmin || session.user.id === quiz.authorId) { %>
+        <li>Answer: <b><%= quiz.answer %></b></li>
+        <% } %>
+    <% } %>
 </ul>
 
 
@@ -17,15 +26,11 @@
     Tips:
 </h1>
 
-<% if (session.user) { %>
-    <% include ../tips/new %>
-<% } %>
+<% include ../tips/new %>
 
 <% var tips = quiz.tips; %>
 <% var quizId = quiz.id; %>
 <% var quizAuthorId = quiz.authorId; %>
-
-<% include ../tips/index %>
 
 
 <a href="/goback"><button>Go back</button></a>

@@ -94,5 +94,7 @@ router.post('/quizzes/:quizId(\\d+)/tips', sessionController.loginRequired, tipC
 router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/accept', sessionController.loginRequired, quizController.adminOrAuthorRequired, tipController.accept);
 router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)', sessionController.loginRequired, quizController.adminOrAuthorRequired, tipController.destroy);
 
-
+// Rutas de edicion de las pistas
+router.get('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/edit', sessionController.loginRequired, quizController.adminOrAuthorRequired, tipController.edit);
+router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/update', sessionController.loginRequired, quizController.adminOrAuthorRequired, tipController.update);
 module.exports = router;

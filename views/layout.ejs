@@ -35,13 +35,14 @@
         <a href="/">Home</a>
         <a href="/quizzes">Quizzes</a>
         <% if (session.user) { %>
-        <a href="/users/<%= session.user.id %>/quizzes">My Quizzes</a>
+            <a href="/users/<%= session.user.id %>/quizzes">My Quizzes</a>
+            <a href="/quizzes/randomplay">Play</a>
         <% } %>
         <% if (session.user) { %>
-        <a href="/users">Users</a>
+            <a href="/users">Users</a>
         <% } %>
 
-        <a href="/quizzes/randomplay">play</a>
+
 
     </nav>
 

@@ -20,11 +20,11 @@
 
         <div class="right">
             <% if (!session.user) { %>
-            <a href="/users/new">Register</a>
-            <a href="/session">Login</a>
+                <a href="/users/new">Register</a>
+                <a href="/session">Login</a>
             <% } else { %>
-            <a href="/users/<%= session.user.id %>"><%= session.user.username %></a>
-            <a href="/session?_method=DELETE">Logout</a>
+                <a href="/users/<%= session.user.id %>"><%= session.user.username %></a>
+                <a href="/session?_method=DELETE">Logout</a>
             <% } %>
         </div>
 

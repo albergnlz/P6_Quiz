@@ -5,19 +5,13 @@ const {models} = require("../models");
 // Autoload the tip with id equals to :tipId
 exports.load = (req, res, next, tipId) => {
 
-    models.quiz.findById(tipId, {
-        include: [
-            {model:models.quiz, include:[
-                {model: models.user, as: 'author'}] },
-            {model: models.user, as: 'author'}
-           ]
-        })
+    models.quiz.findById(tipId)
         .then(tip => {
             if (tip) {
                 req.tip = tip;
                 next();
             } else {
-                throw new Error('There is no tip with the id=' + tipId);
+                next (new Error('There is no tip with the id=' + tipId));
             }
         })
         .catch(error => next(error));
@@ -26,9 +20,10 @@ exports.load = (req, res, next, tipId) => {
 exports.adminOrAuthorRequired = (req, res, next) => {
 
     const isAdmin  = !!req.session.user.isAdmin;
-    const isAuthor = req.tip.authorId === req.session.user.id;
+    const isAuthor = req.quiz.authorId === req.session.user.id;
+    const isAuthorTip = req.tip.authorId === req.session.user.id;
 
-    if (isAdmin || isAuthor) {
+    if (isAdmin || isAuthor || isAuthorTip) {
         next();
     } else {
         console.log('Prohibited operation: The logged in user is not the author of the quiz, nor an administrator.');

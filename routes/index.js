@@ -91,10 +91,12 @@ router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
 router.get('/quizzes/:quizId(\\d+)/tips/new',sessionController.loginRequired, tipController.create)
 
 router.post('/quizzes/:quizId(\\d+)/tips', sessionController.loginRequired, tipController.create);
-router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/accept', sessionController.loginRequired, quizController.adminOrAuthorRequired, tipController.accept);
-router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)', sessionController.loginRequired, quizController.adminOrAuthorRequired, tipController.destroy);
+router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/accept', sessionController.loginRequired, tipController.adminOrAuthorRequired, tipController.accept);
+router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)', sessionController.loginRequired, tipController.adminOrAuthorRequired, tipController.destroy);
 
 // Rutas de edicion de las pistas
-router.get('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/edit', sessionController.loginRequired, quizController.adminOrAuthorRequired, tipController.edit);
-router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/update', sessionController.loginRequired, quizController.adminOrAuthorRequired, tipController.update);
+router.get('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/edit', sessionController.loginRequired, tipController.adminOrAuthorRequired, tipController.edit);
+router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/update', sessionController.loginRequired, tipController.adminOrAuthorRequired, tipController.update);
+
+
 module.exports = router;

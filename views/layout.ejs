@@ -5,15 +5,10 @@
     <title>Quiz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/stylesheets/style.css'/>
-    <link rel='stylesheet'
-          type='text/css'
-          media='only screen and (min-width: 800px) and (min-device-width: 600px)'
-          href='/stylesheets/wide.css'/>
-    <link rel='stylesheet'
-          type='text/css'
-          media='only screen and (max-width: 480px)'
-          href='/stylesheets/smartphone.css'/>
+    <link rel='stylesheet' type='text/css' media='only screen and (min-width: 800px) and (min-device-width: 600px)' href='/stylesheets/wide.css'/>
+    <link rel='stylesheet' type='text/css' media='only screen and (max-width: 480px)' href='/stylesheets/smartphone.css'/>
 </head>
+
 <body>
 <div id="page">
     <header class="main" id="mainHeader">
@@ -36,12 +31,12 @@
         <a href="/quizzes">Quizzes</a>
         <% if (session.user) { %>
             <a href="/users/<%= session.user.id %>/quizzes">My Quizzes</a>
-            <a href="/quizzes/randomplay">Play</a>
+
         <% } %>
         <% if (session.user) { %>
             <a href="/users">Users</a>
         <% } %>
-
+        <a href="/quizzes/play">Play</a>
 
 
     </nav>

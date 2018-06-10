@@ -65,37 +65,40 @@ router.delete('/session', sessionController.destroy); // close sesion
 
 
 // Routes for the resource /users
-router.get('/users', sessionController.loginRequired, userController.index);
-router.get('/users/:userId(\\d+)', sessionController.loginRequired, userController.show);
-router.get('/users/new', userController.new);
-router.post('/users', userController.create);
+router.get('/users',                    sessionController.loginRequired, userController.index);
+router.get('/users/:userId(\\d+)',      sessionController.loginRequired, userController.show);
+router.get('/users/new',                userController.new);
+router.post('/users',                   userController.create);
 router.get('/users/:userId(\\d+)/edit', sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.edit);
-router.put('/users/:userId(\\d+)', sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.update);
-router.delete('/users/:userId(\\d+)', sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.destroy);
+router.put('/users/:userId(\\d+)',      sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.update);
+router.delete('/users/:userId(\\d+)',   sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.destroy);
 
 router.get('/users/:userId(\\d+)/quizzes', sessionController.loginRequired, quizController.index);
 
 
 // Routes for the resource /quizzes
 router.get('/quizzes', quizController.index);
-router.get('/quizzes/:quizId(\\d+)', quizController.show);
-router.get('/quizzes/new', sessionController.loginRequired, quizController.new);
-router.post('/quizzes', sessionController.loginRequired, quizController.create);
+router.get('/quizzes/:quizId(\\d+)',      quizController.show);
+router.get('/quizzes/new',                sessionController.loginRequired, quizController.new);
+router.post('/quizzes',                   sessionController.loginRequired, quizController.create);
 router.get('/quizzes/:quizId(\\d+)/edit', sessionController.loginRequired, quizController.adminOrAuthorRequired, quizController.edit);
-router.put('/quizzes/:quizId(\\d+)', sessionController.loginRequired, quizController.adminOrAuthorRequired, quizController.update);
-router.delete('/quizzes/:quizId(\\d+)', sessionController.loginRequired, quizController.adminOrAuthorRequired, quizController.destroy);
+router.put('/quizzes/:quizId(\\d+)',      sessionController.loginRequired, quizController.adminOrAuthorRequired, quizController.update);
+router.delete('/quizzes/:quizId(\\d+)',   sessionController.loginRequired, quizController.adminOrAuthorRequired, quizController.destroy);
 
 router.get('/quizzes/:quizId(\\d+)/play',  quizController.play);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
 
+router.get('/quizzes/randomplay', quizController.randomplay);
+router.get('/quizzes/randomcheck/:quizId(\\d+)', quizController.randomcheck);
+
 router.get('/quizzes/:quizId(\\d+)/tips/new',sessionController.loginRequired, tipController.create)
 
-router.post('/quizzes/:quizId(\\d+)/tips', sessionController.loginRequired, tipController.create);
+router.post('/quizzes/:quizId(\\d+)/tips',                    sessionController.loginRequired, tipController.create);
 router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/accept', sessionController.loginRequired, tipController.adminOrAuthorRequired, tipController.accept);
-router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)', sessionController.loginRequired, tipController.adminOrAuthorRequired, tipController.destroy);
+router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)',     sessionController.loginRequired, tipController.adminOrAuthorRequired, tipController.destroy);
 
 // Rutas de edicion de las pistas
-router.get('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/edit', sessionController.loginRequired, tipController.adminOrAuthorRequired, tipController.edit);
+router.get('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/edit',   sessionController.loginRequired, tipController.adminOrAuthorRequired, tipController.edit);
 router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/update', sessionController.loginRequired, tipController.adminOrAuthorRequired, tipController.update);
 
 

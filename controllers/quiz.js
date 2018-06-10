@@ -254,7 +254,7 @@ exports.randomplay=(req,res,next)=>{
         })
         .then(quiz=>{
             let score =req.session.randomplay.length;
-            res.render('quizzes/randomplay',{quiz,score});
+            res.render('quizzes/random_play',{quiz,score});
         })
 
         .catch(error=>{

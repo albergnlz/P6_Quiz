@@ -231,7 +231,7 @@ exports.check = (req, res, next) => {
 };
 
 
-
+// GET /quizzes/randomplay
 exports.randomplay=(req,res,next)=>{
     if(req.session.randomplay===undefined){
         req.session.randomplay=[];
@@ -264,6 +264,8 @@ exports.randomplay=(req,res,next)=>{
 
 }
 
+
+// GET /quizzes/randomcheck
 exports.randomcheck=(req,res,next)=>{
 
     const {query,quiz}=req;
